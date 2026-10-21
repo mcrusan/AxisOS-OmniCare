@@ -160,5 +160,6 @@ PYTHONPATH=src uvicorn omnicare.main:app --host 0.0.0.0 --port 8000
 ---
 
 ## 5. Built by Crusan & Co.
+- **2m15s Hackathon Demo Video (YouTube):** [https://youtu.be/WyP8PuIEWjs](https://youtu.be/WyP8PuIEWjs)
 - **Website & Live Sovereign Fleet Deck:** [https://axisos.pro](https://axisos.pro)
 - **Three Pillars of AxisOS:** `HONEST` (Ground-truth telemetry, zero mock data) • `AUDITABLE` (Inspectable at every layer) • `OWNED` (Sovereign hardware control)
