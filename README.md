@@ -21,7 +21,7 @@ Changelog:
 **Hackathon Track:** AWS Communication Developer Services (CDS) & Amazon Bedrock AgentCore  
 **2m15s 1080p Video Walkthrough:** [https://youtu.be/WyP8PuIEWjs](https://youtu.be/WyP8PuIEWjs)  
 
-> **Intellectual Property & Proprietary Core Exclusion Notice:** This repository contains the external **AxisOS OmniCare** AWS CDS / Amazon Bedrock AgentCore integration layer and HTTP telemetry bridge (`axisos_bridge.py`). The underlying **AxisOS** operating system, the **AxisOS Sovereign Triad** freestanding C99 core engines (`zero-core`, `agent-lite` / `lite`, `axis-agent`, `zero-comms`, `zero-brain`, and `cloud-triad-gateway`), and the `RAMGAK` DDR4 memory bracket architecture are not distributed in this repository and remain the exclusive, proprietary intellectual property of **Crusan & Co.** (Marc F. Crusan). All Rights Reserved.
+> **Intellectual Property & Proprietary Core Exclusion Notice:** This repository contains the external **AxisOS OmniCare** AWS CDS / Amazon Bedrock AgentCore integration layer and HTTP telemetry bridge (`axisos_bridge.py`). The underlying **AxisOS Tiny OS** (`axisos-initramfs.img`), the **freestanding C99 direct kernel syscall stack** (`axis-syscalls.c`, `axis-loop.c`, `svc #0` / `syscall`), the **AxisOS Sovereign Triad core agents** (`zero-core`, `agent-lite` / `lite`, `axis-agent`, `zero-comms`, `zero-brain`, and `cloud-triad-gateway`), the `RAMGAK` DDR4 memory bracket architecture, and all pre-loaded AxisOS hardware distributions are not distributed in this repository and remain the exclusive, proprietary intellectual property of **Crusan & Co.** (Marc F. Crusan). All Rights Reserved.
 
 ---
 
