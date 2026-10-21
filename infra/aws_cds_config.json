@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "file": "infra/aws_cds_config.json",
+    "project": "AxisOS OmniCare (Crusan & Co.)",
+    "author": "Marc F. Crusan / Crusan & Co. w/ AGY",
+    "date": "2026-10-20",
+    "description": "AWS Communication Developer Services (CDS) & End User Messaging channel configuration across SMS, RCS, WhatsApp (Meta templates), and Amazon SES Email.",
+    "changelog": [
+      "2026-10-20 (MFC/AGY): Defined unified CDS ingress webhooks, WhatsApp templates, and SES routing."
+    ]
+  },
+  "service": "aws-end-user-messaging-cds",
+  "region": "us-west-2",
+  "unified_ingress": {
+    "api_gateway_stage": "prod",
+    "base_path": "/webhook",
+    "routes": {
+      "sms": "/webhook/sms",
+      "rcs": "/webhook/sms",
+      "whatsapp": "/webhook/whatsapp",
+      "email": "/webhook/email"
+    },
+    "state_table": "omnicare-conversation-state"
+  },
+  "channels": {
+    "sms_rcs": {
+      "provider": "AWS End User Messaging SMS and Voice v2 / SNS",
+      "origination_identity": "+18005550199",
+      "rcs_agent_id": "crusan-axisos-omnicare-rcs",
+      "message_type": "TRANSACTIONAL",
+      "two_way_enabled": true,
+      "two_way_channel_arn": "arn:aws:sns:us-west-2:000000000000:omnicare-inbound-sms-rcs"
+    },
+    "whatsapp": {
+      "provider": "AWS End User Messaging Social (WhatsApp Business Platform)",
+      "phone_number_id": "waba-phone-id-001",
+      "meta_prize_eligible": true,
+      "approved_templates": [
+        {
+          "name": "axisos_telemetry_alert",
+          "language": "en_US",
+          "category": "UTILITY",
+          "components": [
+            {
+              "type": "HEADER",
+              "format": "TEXT",
+              "text": "AxisOS Sovereign Triad Status [{{1}}]"
+            },
+            {
+              "type": "BODY",
+              "text": "Node {{1}} telemetry verified: SoC {{2}}C, RAMGAK Bracket {{3}}, Zero-Core latency {{4}} us. Reply 'REPORT' to switch to full SES Email diagnostics."
+            }
+          ]
+        },
+        {
+          "name": "omnicare_followup_confirm",
+          "language": "en_US",
+          "category": "UTILITY",
+          "components": [
+            {
+              "type": "BODY",
+              "text": "Crusan & Co. OmniCare: Your follow-up check (#{{1}}) is scheduled for {{2}}. Conversation continuity ID: {{3}}."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "provider": "Amazon Simple Email Service (SES v2)",
+      "verified_domain": "axisos.pro",
+      "from_address": "omnicare@axisos.pro",
+      "inbound_receipt_rule_set": "omnicare-ses-inbound-rules",
+      "s3_transcript_bucket": "omnicare-cds-transcripts"
+    }
+  }
+}

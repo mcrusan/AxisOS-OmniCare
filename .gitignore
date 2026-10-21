@@ -1,0 +1,41 @@
+# ==============================================================================
+# File: .gitignore
+# Project: AxisOS OmniCare (Crusan & Co.)
+# Author: Marc F. Crusan / Crusan & Co. w/ AGY
+# Date: 2026-10-20
+# Description: Git ignore patterns for Python caches, virtualenvs, and secrets.
+# Changelog:
+#   - 2026-10-20 (MFC/AGY): Added SOP header and pytest cache ignore rules.
+# ==============================================================================
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Local testing
+local/
+tmp/

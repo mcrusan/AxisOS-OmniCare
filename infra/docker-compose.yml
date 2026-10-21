@@ -1,0 +1,33 @@
+# ==============================================================================
+# File: infra/docker-compose.yml
+# Project: AxisOS OmniCare (Crusan & Co.)
+# Author: Marc F. Crusan / Crusan & Co. w/ AGY
+# Date: 2026-10-20
+# Description: Docker Compose stack for running the AxisOS OmniCare AWS CDS
+#              & Bedrock AgentCore service alongside local AxisOS Triad nodes.
+# Changelog:
+#   - 2026-10-20 (MFC/AGY): Created compose topology for OmniCare API.
+# ==============================================================================
+version: "3.9"
+
+services:
+  omnicare-api:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: axisos-omnicare-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - APP_PORT=8000
+      - LOG_LEVEL=INFO
+      - AWS_REGION=${AWS_REGION:-us-west-2}
+      - AGENTCORE_CONFIG_PATH=/app/src/omnicare/agent/agentcore.yaml
+      - AGENTCORE_MODEL_ID=${AGENTCORE_MODEL_ID:-anthropic.claude-3-sonnet-20240229-v1:0}
+      - AXISOS_ZERO_CORE_URL=${AXISOS_ZERO_CORE_URL:-http://192.168.1.34:8081}
+      - AXISOS_LITE_URL=${AXISOS_LITE_URL:-http://192.168.1.34:8080}
+      - AXISOS_AGENT_URL=${AXISOS_AGENT_URL:-http://192.168.1.34:8082}
+      - AXISOS_COMMS_URL=${AXISOS_COMMS_URL:-http://192.168.1.34:8085}
+      - AXISOS_CLOUD_OUTPOST_URL=${AXISOS_CLOUD_OUTPOST_URL:-https://axisos-sovereign-triad-4zye7tn3qq-uw.a.run.app}
+    restart: unless-stopped

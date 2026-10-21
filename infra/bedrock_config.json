@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "file": "infra/bedrock_config.json",
+    "project": "AxisOS OmniCare (Crusan & Co.)",
+    "author": "Marc F. Crusan / Crusan & Co. w/ AGY",
+    "date": "2026-10-20",
+    "description": "Amazon Bedrock AgentCore multi-agent orchestration and Action Group tool bindings for AxisOS OmniCare.",
+    "changelog": [
+      "2026-10-20 (MFC/AGY): Populated Bedrock AgentCore multi-agent topology and AxisOS Triad tool schemas."
+    ]
+  },
+  "bedrock_agentcore": {
+    "region": "us-west-2",
+    "foundation_model": "anthropic.claude-3-sonnet-20240229-v1:0",
+    "guardrails": {
+      "pillars": ["HONEST", "AUDITABLE", "OWNED"],
+      "zero_hallucinated_telemetry": true
+    },
+    "agents": [
+      {
+        "agent_name": "CareAgent",
+        "role": "Primary omnichannel triage, follow-up care, appointment scheduling, and medication continuity.",
+        "action_groups": ["SendSMS", "SendWhatsAppTemplate", "ScheduleFollowup", "LookupUserProfile"]
+      },
+      {
+        "agent_name": "AxisAgent",
+        "role": "Sovereign cloud-to-edge coordinator interfacing with AxisOS Triad services (Zero-Core :8081, Lite :8080, Axis-Agent :8082, Comms :8085).",
+        "action_groups": ["GetAxisOSTelemetry", "TriggerAxisOSAction", "SendSMS", "SendWhatsAppTemplate"]
+      },
+      {
+        "agent_name": "SummaryAgent",
+        "role": "Intent-aware channel switcher that transitions SMS/WhatsApp conversations into structured Amazon SES email diagnostic reports.",
+        "action_groups": ["SwitchChannel", "SendEmail", "GetAxisOSTelemetry"]
+      },
+      {
+        "agent_name": "SupportAgent",
+        "role": "Interactive hardware and network troubleshooting across 3-NIC edge nodes and RAID5 storage arrays.",
+        "action_groups": ["GetAxisOSTelemetry", "TriggerAxisOSAction", "SwitchChannel"]
+      },
+      {
+        "agent_name": "SetupAgent",
+        "role": "Zero-trust node onboarding, mutual safeword verification, and channel preference linking.",
+        "action_groups": ["LookupUserProfile", "SendWhatsAppTemplate", "SendSMS"]
+      }
+    ]
+  }
+}
